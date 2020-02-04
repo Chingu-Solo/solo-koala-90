@@ -6,11 +6,8 @@
 
 html,
 body {
-  font-family: Roboto;
-  font-weight: 400;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
-  color: rgba(0, 0, 0, 0.6);
 }
 
 li {
