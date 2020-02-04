@@ -41,3 +41,4 @@ npm install
 - [React](https://github.com/facebook/react) - The web framework used
 - [Google Fonts API](https://developers.google.com/fonts/docs/developer_api)
 - [axios](https://github.com/axios/axios) - Promises handling used
+- [material-ui](https://material-ui.com/)

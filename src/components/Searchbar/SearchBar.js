@@ -14,7 +14,7 @@ import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import Slider from "@material-ui/core/Slider";
 import Hidden from "@material-ui/core/Hidden";
 
-import useStyles from "../Searchbar/searchBarStyle";
+import useStyles from "./searchBarStyle";
 
 const SearchBar = props => {
   const classes = useStyles(props);
