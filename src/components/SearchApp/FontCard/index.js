@@ -7,7 +7,7 @@ import useStyles from "./fontCardStyle";
 
 const FontCard = props => {
   const classes = useStyles(props);
-  const { fontFamily, styles } = props;
+  const { fontFamily, styles, quotes } = props;
   return (
     <Grid item xs={12} md={4} lg={3} className={classes.fontCardContainer}>
       <section className={classes.fontSection}>
@@ -22,7 +22,7 @@ const FontCard = props => {
         </div>
         <div className="fontPreview">
           <TextAreaAutoSize
-            defaultValue="All their equipment and instruments are alive"
+            value={quotes}
             style={{
               fontFamily: fontFamily,
               marginTop: ".8em",
@@ -32,8 +32,8 @@ const FontCard = props => {
               border: "none",
               outline: 0,
               resize: "none",
-              lineHeight: "1",
-              letterSpacing: "1.2",
+              lineHeight: "1.2",
+              letterSpacing: "1",
               color: "#212121"
             }}
           />

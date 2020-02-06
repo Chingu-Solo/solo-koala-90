@@ -17,6 +17,7 @@ import Hidden from "@material-ui/core/Hidden";
 import useStyles from "./searchBarStyle";
 
 const SearchBar = props => {
+  const { handleQuotesChange } = props;
   const classes = useStyles(props);
   return (
     <Grid
@@ -43,6 +44,7 @@ const SearchBar = props => {
       <Hidden xsDown>
         <Grid item md={3} lg={3} className={classes.spacedLine}>
           <InputBase
+            onChange={handleQuotesChange}
             color="secondary"
             placeholder="Type something"
             classes={{
