@@ -2,6 +2,8 @@
 
 The app is a fully developed front-end app created for the Chingu Solo Project. By configuring the Google Fonts API, allowing users to search, test, and play around with their favourite fonts.
 
+#### [Demo](https://elegant-kalam-dc4d3a.netlify.com/) - working in progress
+
 ## Prerequisites
 
 Replace the `GOOGLE_FONTS_API_KEY` with `YOUR_API_KEY`
@@ -31,14 +33,15 @@ npm install
 - [ ] Change the display of fonts (grid/list layout)
 - [ ] Add fonts into a list also can be deleted from the list (localStorage)
 - [ ] Sample texts are immediately changed depending on font-size and a set of custom text message
-- [ ] The displaying fonts are sorted by popularity
+- [x] The displaying fonts are sorted by popularity
 - [ ] A reset button
 - [ ] A back to top button
-- [ ] Fully responsive website design
+- [x] Fully responsive website design
+- [x] Lazily loading font family
 
 ## Built With
 
 - [React](https://github.com/facebook/react) - The web framework used
 - [Google Fonts API](https://developers.google.com/fonts/docs/developer_api)
-- [axios](https://github.com/axios/axios) - Promises handling used
+- [axios](https://**github**.com/axios/axios) - Promises handling used
 - [material-ui](https://material-ui.com/)
