@@ -36,7 +36,7 @@ const SearchApp = props => {
       let lazyTextArea = entry.target;
       const fontLink = lazyTextArea.style.fontFamily.split(" ").join("+");
       const link = document.createElement("link");
-      link.href = `http://fonts.googleapis.com/css?family=${fontLink}&display=swap`;
+      link.href = `https://fonts.googleapis.com/css?family=${fontLink}&display=swap`;
       link.rel = "stylesheet";
 
       document.head.appendChild(link);
