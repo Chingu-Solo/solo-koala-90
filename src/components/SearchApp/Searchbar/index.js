@@ -86,15 +86,15 @@ const SearchBar = props => {
       <Grid item md={2} lg={2}>
         <div className={classes.icons}>
           <Hidden xsDown>
-            <IconButton aria-label="change theme" size="medium">
-              <FormatColorFillIcon fontSize="medium" />
+            <IconButton aria-label="change theme">
+              <FormatColorFillIcon />
             </IconButton>
-            <IconButton aria-label="change layout" size="medium">
-              <ViewListOutlinedIcon ontSize="medium" />
+            <IconButton aria-label="change layout">
+              <ViewListOutlinedIcon />
             </IconButton>
           </Hidden>
-          <IconButton aria-label="reset" size="medium">
-            <RefreshIcon ontSize="medium" />
+          <IconButton aria-label="reset">
+            <RefreshIcon />
           </IconButton>
         </div>
       </Grid>
