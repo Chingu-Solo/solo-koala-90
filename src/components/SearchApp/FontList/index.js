@@ -1,11 +1,13 @@
 import React from "react";
 import FontCard from "../FontCard";
 
+import useStyles from "./fontListStyle";
+
 const SearchList = ({ fonts }) => {
-  // console.log(fonts);
+  const classes = useStyles();
   if (!fonts) return "";
   return (
-    <div>
+    <div className={classes.fontListContainer}>
       {fonts.map(font => (
         <FontCard
           key={font.family}

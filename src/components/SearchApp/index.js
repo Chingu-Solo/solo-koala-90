@@ -4,8 +4,11 @@ import useIntersect from "../../hook/useIntersect";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from "./Searchbar";
 import FontList from "./FontList";
+import useStyles from "./searchAppStyle";
 
-function SearchApp() {
+const SearchApp = props => {
+  const classes = useStyles(props);
+
   const [fonts, setFonts] = useState();
   const [observer, setNodes, enteries] = useIntersect({});
 
@@ -43,24 +46,27 @@ function SearchApp() {
   }, [enteries, observer]);
 
   // console.log(fonts);
+  const resultCounts = fonts => (
+    <Grid item xs={10} className={classes.resultCounts}>
+      <p>
+        Viewing {fonts.length} of {fonts.length}
+      </p>
+    </Grid>
+  );
 
   return (
     <div>
       <SearchBar />
-      <Grid container>
-        {fonts ? (
-          <div>
-            <p>
-              Viewing {fonts.length} of {fonts.length}
-            </p>
-          </div>
-        ) : (
-          ""
-        )}
-        <FontList fonts={fonts} />
-      </Grid>
+      {fonts ? (
+        <Grid container justify="space-between">
+          {resultCounts(fonts)}
+          <FontList fonts={fonts} />
+        </Grid>
+      ) : (
+        ""
+      )}
     </div>
   );
-}
+};
 
 export default SearchApp;

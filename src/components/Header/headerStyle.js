@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   navListItemActived: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
+    fontWeight: "700"
   }
 }));
 
