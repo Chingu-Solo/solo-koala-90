@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const useQuoteState = initalVal => {
+const useInputState = initalVal => {
   const [value, setValue] = useState(initalVal);
   const handleChange = e => setValue(e.target.value);
 
   return [value, handleChange];
 };
 
-export default useQuoteState;
+export default useInputState;

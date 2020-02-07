@@ -17,8 +17,11 @@ import Hidden from "@material-ui/core/Hidden";
 import useStyles from "./searchBarStyle";
 
 const SearchBar = props => {
-  const { handleQuotesChange } = props;
+  const { handleQuotesChange, filteredFonts, setFilteredFonts } = props;
   const classes = useStyles(props);
+
+  const handleFilter = e => setFilteredFonts(e.target.value);
+
   return (
     <Grid
       container
@@ -29,6 +32,9 @@ const SearchBar = props => {
     >
       <Grid item alignItems="center" md={2} lg={2}>
         <InputBase
+          type="text"
+          name={filteredFonts}
+          onChange={handleFilter}
           placeholder="Search fonts"
           classes={{
             input: classes.inputInput

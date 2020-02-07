@@ -3,7 +3,7 @@ import FontCard from "../FontCard";
 
 import useStyles from "./fontListStyle";
 
-const SearchList = ({ fonts, quotesValue }) => {
+const SearchList = ({ fonts, inputValue }) => {
   const classes = useStyles();
   if (!fonts) return "";
   return (
@@ -13,7 +13,7 @@ const SearchList = ({ fonts, quotesValue }) => {
           key={font.family}
           fontFamily={font.family}
           styles={font.variants}
-          quotesValue={quotesValue}
+          inputValue={inputValue}
         />
       ))}
     </div>

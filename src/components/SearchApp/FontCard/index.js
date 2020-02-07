@@ -9,10 +9,8 @@ import useStyles from "./fontCardStyle";
 
 const FontCard = props => {
   const classes = useStyles(props);
-  const { fontFamily, styles, quotesValue } = props;
-  const [value, setValue] = useState(randomQuotes(quotesArr));
-
-  const valueCondition = quotesValue => (!quotesValue ? value : quotesValue);
+  const { fontFamily, styles, inputValue } = props;
+  const [quotesValue, setquotesValue] = useState(randomQuotes(quotesArr));
 
   return (
     <Grid item xs={12} md={4} lg={3} className={classes.fontCardContainer}>
@@ -28,8 +26,7 @@ const FontCard = props => {
         </div>
         <div className="fontPreview">
           <TextAreaAutoSize
-            defaultValue={value}
-            value={valueCondition(quotesValue)}
+            defaultValue={inputValue || quotesValue}
             style={{
               fontFamily: fontFamily,
               marginTop: ".8em",

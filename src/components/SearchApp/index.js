@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useIntersect from "../../hook/useIntersect";
-import useQuoteState from "../../hook/useQuoteState";
-import Grid from "@material-ui/core/Grid";
+import useInputState from "../../hook/useInputState";
 import SearchBar from "./Searchbar";
 import FontList from "./FontList";
 import useStyles from "./searchAppStyle";
@@ -12,7 +11,8 @@ const SearchApp = props => {
 
   const [fonts, setFonts] = useState([]);
   const [observer, setNodes, enteries] = useIntersect({});
-  const [quotesValue, handleQuotesChange] = useQuoteState();
+  const [inputValue, handleQuotesChange] = useInputState();
+  const [filteredFonts, setFilteredFonts] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -27,7 +27,7 @@ const SearchApp = props => {
     if (!fonts) return;
     let textarea = Array.from(document.querySelectorAll("textarea"));
     setNodes(textarea);
-  }, [fonts, setFonts]);
+  }, [fonts, setFonts, setNodes]);
 
   useEffect(() => {
     if (!enteries) return;
@@ -47,22 +47,32 @@ const SearchApp = props => {
     });
   }, [enteries, observer]);
 
+  const newFilters = fonts.filter(font =>
+    font.family.toLowerCase().includes(filteredFonts.toLowerCase())
+  );
+
   const resultCounts = fonts => (
-    <Grid item xs={10} className={classes.resultCounts}>
-      <p>
-        Viewing {fonts.length} of {fonts.length}
+    <div className={classes.resultCounts}>
+      <p style={{ display: "inline-box", marginLeft: "0" }}>
+        Viewing <span className={classes.countColor}>{newFilters.length}</span>{" "}
+        of {fonts.length}
       </p>
-    </Grid>
+      <p></p>
+    </div>
   );
 
   return (
     <div>
-      <SearchBar handleQuotesChange={handleQuotesChange} />
+      <SearchBar
+        handleQuotesChange={handleQuotesChange}
+        filteredFonts={filteredFonts}
+        setFilteredFonts={setFilteredFonts}
+      />
       {fonts ? (
-        <Grid container justify="space-between">
+        <div className={classes.displayFontResult}>
           {resultCounts(fonts)}
-          <FontList fonts={fonts} quotesValue={quotesValue} />
-        </Grid>
+          <FontList fonts={newFilters} inputValue={inputValue} />
+        </div>
       ) : (
         ""
       )}
