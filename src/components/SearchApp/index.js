@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useIntersect from "../../hook/useIntersect";
 import useQuoteState from "../../hook/useQuoteState";
-import { randomQuotes } from "../../utils/helper";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from "./Searchbar";
 import FontList from "./FontList";
-import { quotesArr } from "../../utils/quotes";
 import useStyles from "./searchAppStyle";
 
 const SearchApp = props => {
@@ -14,7 +12,7 @@ const SearchApp = props => {
 
   const [fonts, setFonts] = useState([]);
   const [observer, setNodes, enteries] = useIntersect({});
-  const [quotes, handleQuotesChange] = useQuoteState(randomQuotes(quotesArr));
+  const [quotesValue, handleQuotesChange] = useQuoteState();
 
   useEffect(() => {
     (async () => {
@@ -63,7 +61,7 @@ const SearchApp = props => {
       {fonts ? (
         <Grid container justify="space-between">
           {resultCounts(fonts)}
-          <FontList fonts={fonts} quotes={quotes} />
+          <FontList fonts={fonts} quotesValue={quotesValue} />
         </Grid>
       ) : (
         ""

@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import TextAreaAutoSize from "@material-ui/core/TextareaAutosize";
+import { randomQuotes } from "../../../utils/helper";
+import { quotesArr } from "../../../utils/quotes";
 import useStyles from "./fontCardStyle";
 
 const FontCard = props => {
   const classes = useStyles(props);
-  const { fontFamily, styles, quotes } = props;
+  const { fontFamily, styles, quotesValue } = props;
+  const [value, setValue] = useState(randomQuotes(quotesArr));
+
+  const valueCondition = quotesValue => (!quotesValue ? value : quotesValue);
+
   return (
     <Grid item xs={12} md={4} lg={3} className={classes.fontCardContainer}>
       <section className={classes.fontSection}>
@@ -22,7 +28,8 @@ const FontCard = props => {
         </div>
         <div className="fontPreview">
           <TextAreaAutoSize
-            value={quotes}
+            defaultValue={value}
+            value={valueCondition(quotesValue)}
             style={{
               fontFamily: fontFamily,
               marginTop: ".8em",
