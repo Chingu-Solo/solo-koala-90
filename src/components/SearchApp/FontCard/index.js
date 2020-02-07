@@ -9,9 +9,8 @@ import useStyles from "./fontCardStyle";
 
 const FontCard = props => {
   const classes = useStyles(props);
-  const { fontFamily, styles, inputValue } = props;
+  const { fontFamily, styles, inputValue, fontSizeValue } = props;
   const [quotesValue, setquotesValue] = useState(randomQuotes(quotesArr));
-
   return (
     <Grid item xs={12} md={4} lg={3} className={classes.fontCardContainer}>
       <section className={classes.fontSection}>
@@ -31,7 +30,7 @@ const FontCard = props => {
               fontFamily: fontFamily,
               marginTop: ".8em",
               fontWeight: "regular",
-              fontSize: "40px",
+              fontSize: `${fontSizeValue}px`,
               width: "100%",
               border: "none",
               outline: 0,

@@ -13,6 +13,7 @@ const SearchApp = props => {
   const [observer, setNodes, enteries] = useIntersect({});
   const [inputValue, handleQuotesChange] = useInputState();
   const [filteredFonts, setFilteredFonts] = useState("");
+  const [fontSizeValue, setFontSizeValue] = useState(40);
 
   useEffect(() => {
     (async () => {
@@ -27,7 +28,7 @@ const SearchApp = props => {
     if (!fonts) return;
     let textarea = Array.from(document.querySelectorAll("textarea"));
     setNodes(textarea);
-  }, [fonts, setFonts, setNodes]);
+  }, [fonts, setFonts]);
 
   useEffect(() => {
     if (!enteries) return;
@@ -39,7 +40,7 @@ const SearchApp = props => {
       const fontLink = lazyTextArea.style.fontFamily.split(" ").join("+");
       const link = document.createElement("link");
       link.href = `https://fonts.googleapis.com/css?family=${fontLink}&display=swap`;
-      link.rel = "stylesheet";
+      link.rel = "preload stylesheet";
 
       document.head.appendChild(link);
 
@@ -55,11 +56,13 @@ const SearchApp = props => {
     <div className={classes.resultCounts}>
       <p style={{ display: "inline-box", marginLeft: "0" }}>
         Viewing <span className={classes.countColor}>{newFilters.length}</span>{" "}
-        of {fonts.length}
+        of {fonts.length} font families
       </p>
       <p></p>
     </div>
   );
+
+  console.log(fonts);
 
   return (
     <div>
@@ -67,11 +70,17 @@ const SearchApp = props => {
         handleQuotesChange={handleQuotesChange}
         filteredFonts={filteredFonts}
         setFilteredFonts={setFilteredFonts}
+        fontSizeValue={fontSizeValue}
+        setFontSizeValue={setFontSizeValue}
       />
       {fonts ? (
         <div className={classes.displayFontResult}>
           {resultCounts(fonts)}
-          <FontList fonts={newFilters} inputValue={inputValue} />
+          <FontList
+            fonts={newFilters}
+            inputValue={inputValue}
+            fontSizeValue={fontSizeValue}
+          />
         </div>
       ) : (
         ""

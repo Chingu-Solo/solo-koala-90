@@ -76,6 +76,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "flex-end",
     width: "100%",
     margin: "0 auto"
+  },
+  hide: {
+    display: "none"
   }
 }));
 

@@ -16,7 +16,7 @@ import useStyles from "./headerStyle";
 const Header = props => {
   const classes = useStyles(props);
   return (
-    <AppBar variant="outlined" color="white" className={classes.header}>
+    <AppBar variant="outlined" className={classes.header}>
       <Toolbar>
         <Typography variant="h6" color="textSecondary" className={classes.logo}>
           Google Fonts

@@ -2,7 +2,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
   header: {
-    padding: "0 1rem 0 2rem"
+    padding: "0 1rem 0 2rem",
+    backgroundColor: "white"
   },
   logo: {
     flexGrow: 1

@@ -17,8 +17,15 @@ import Hidden from "@material-ui/core/Hidden";
 import useStyles from "./searchBarStyle";
 
 const SearchBar = props => {
-  const { handleQuotesChange, filteredFonts, setFilteredFonts } = props;
+  const {
+    handleQuotesChange,
+    filteredFonts,
+    setFilteredFonts,
+    fontSizeValue,
+    setFontSizeValue
+  } = props;
   const classes = useStyles(props);
+  const fontSelect = [8, 12, 14, 20, 24, 32, 40, 64, 96, 120, 184, 280];
 
   const handleFilter = e => setFilteredFonts(e.target.value);
 
@@ -30,7 +37,7 @@ const SearchBar = props => {
       justify="space-between"
       className={classes.searchBar}
     >
-      <Grid item alignItems="center" md={2} lg={2}>
+      <Grid item md={2} lg={2}>
         <InputBase
           type="text"
           name={filteredFonts}
@@ -63,28 +70,34 @@ const SearchBar = props => {
         <Grid item md={4} lg={4} className={classes.spacedLine}>
           <div className={classes.modifyFonts}>
             <Select
-              value="10"
-              onChange=""
+              value={fontSizeValue}
+              onChange={e => setFontSizeValue(e.target.value)}
               disableUnderline={true}
               classes={{
                 root: classes.selectRoot,
                 icon: classes.selectIcon
               }}
             >
-              <MenuItem value={10}>10px</MenuItem>
-              <MenuItem value={20}>20px</MenuItem>
-              <MenuItem value={30}>30px</MenuItem>
+              <MenuItem className={classes.hide} value={fontSizeValue}>
+                {fontSizeValue} px
+              </MenuItem>
+              {fontSelect.map(f => (
+                <MenuItem key={f} value={f || fontSizeValue}>
+                  {f} px
+                </MenuItem>
+              ))}
             </Select>
             <Hidden smDown>
               <div className={classes.silderLine}>
                 <Slider
                   color="secondary"
-                  value="25"
-                  min="0"
-                  max="100"
-                  defaultValue=""
+                  value={fontSizeValue}
+                  min={8}
+                  max={300}
+                  defaultValue={40}
                   aria-labelledby="continuous-slider"
                   className={classes.silder}
+                  onChange={(e, newValue) => setFontSizeValue(newValue)}
                 />
               </div>
             </Hidden>
