@@ -3,6 +3,8 @@ import Header from "./Header";
 import SearchApp from "./SearchApp";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+import { ThemesProvider } from "../context/ThemesContext";
+import PageContext from "../context/PageContext";
 import "./app.css";
 
 const theme = createMuiTheme({
@@ -15,11 +17,15 @@ const theme = createMuiTheme({
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <Header />
-        <SearchApp />
-      </div>
-    </ThemeProvider>
+    <ThemesProvider>
+      <ThemeProvider theme={theme}>
+        <PageContext>
+          <div className="App">
+            <Header />
+            <SearchApp />
+          </div>
+        </PageContext>
+      </ThemeProvider>
+    </ThemesProvider>
   );
 }

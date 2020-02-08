@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -13,10 +13,15 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import Slider from "@material-ui/core/Slider";
 import Hidden from "@material-ui/core/Hidden";
+import { ThemesContext } from "../../../context/ThemesContext";
 
 import useStyles from "./searchBarStyle";
 
 const SearchBar = props => {
+  console.log("searchBar rendered");
+
+  const { isDarkMode, toggleTheme } = useContext(ThemesContext);
+
   const {
     handleQuotesChange,
     filteredFonts,
@@ -35,7 +40,7 @@ const SearchBar = props => {
       wrap="nowrap"
       alignItems="center"
       justify="space-between"
-      className={classes.searchBar}
+      className={isDarkMode ? classes.searchBarDark : classes.searchBar}
     >
       <Grid item md={2} lg={2}>
         <InputBase
@@ -44,37 +49,52 @@ const SearchBar = props => {
           onChange={handleFilter}
           placeholder="Search fonts"
           classes={{
-            input: classes.inputInput
+            input: `${isDarkMode ? classes.inputInputDark : classes.inputInput}`
           }}
           startAdornment={
             <InputAdornment position="start">
-              <SearchIcon fontSize="small" />
+              <SearchIcon
+                fontSize="small"
+                color={isDarkMode ? "secondary" : "inherit"}
+              />
             </InputAdornment>
           }
-          className={classes.searchFont}
+          className={isDarkMode ? classes.searchFontDark : classes.searchFont}
         />
       </Grid>
       <Hidden xsDown>
-        <Grid item md={3} lg={3} className={classes.spacedLine}>
+        <Grid
+          item
+          md={3}
+          lg={3}
+          className={isDarkMode ? classes.spacedLineDark : classes.spacedLine}
+        >
           <InputBase
             onChange={handleQuotesChange}
             color="secondary"
             placeholder="Type something"
             classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-              focused: classes.inputFoucus
+              root: isDarkMode ? classes.inputRootDark : classes.inputRoot,
+              focused: classes.inputFoucus,
+              input: `${
+                isDarkMode ? classes.inputInputDark : classes.inputInput
+              }`
             }}
           />
         </Grid>
-        <Grid item md={4} lg={4} className={classes.spacedLine}>
+        <Grid
+          item
+          md={4}
+          lg={4}
+          className={isDarkMode ? classes.spacedLineDark : classes.spacedLine}
+        >
           <div className={classes.modifyFonts}>
             <Select
               value={fontSizeValue}
               onChange={e => setFontSizeValue(e.target.value)}
               disableUnderline={true}
               classes={{
-                root: classes.selectRoot,
+                root: isDarkMode ? classes.selectRootDark : classes.selectRoot,
                 icon: classes.selectIcon
               }}
             >
@@ -82,7 +102,7 @@ const SearchBar = props => {
                 {fontSizeValue} px
               </MenuItem>
               {fontSelect.map(f => (
-                <MenuItem key={f} value={f || fontSizeValue}>
+                <MenuItem dense key={f} value={f || fontSizeValue}>
                   {f} px
                 </MenuItem>
               ))}
@@ -108,14 +128,19 @@ const SearchBar = props => {
         <div className={classes.icons}>
           <Hidden xsDown>
             <IconButton aria-label="change theme">
-              <FormatColorFillIcon />
+              <FormatColorFillIcon
+                onClick={toggleTheme}
+                color={isDarkMode ? "secondary" : "inherit"}
+              />
             </IconButton>
             <IconButton aria-label="change layout">
-              <ViewListOutlinedIcon />
+              <ViewListOutlinedIcon
+                color={isDarkMode ? "secondary" : "inherit"}
+              />
             </IconButton>
           </Hidden>
           <IconButton aria-label="reset">
-            <RefreshIcon />
+            <RefreshIcon color={isDarkMode ? "secondary" : "inherit"} />
           </IconButton>
         </div>
       </Grid>

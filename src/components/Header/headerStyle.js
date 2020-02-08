@@ -2,8 +2,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
   header: {
-    padding: "0 1rem 0 2rem",
-    backgroundColor: "white"
+    padding: "0 1rem 0 2rem"
+    // backgroundColor: "white"
   },
   logo: {
     flexGrow: 1
@@ -20,8 +20,20 @@ const useStyles = makeStyles(theme => ({
       textDecoration: "none"
     }
   },
+  navListItemDark: {
+    color: "white",
+    fontSize: "0.88em",
+    fontWeight: "500",
+    "&:hover": {
+      textDecoration: "none"
+    }
+  },
   navListItemActived: {
     color: theme.palette.secondary.main,
+    fontWeight: "700"
+  },
+  navListItemActivedDark: {
+    color: "white",
     fontWeight: "700"
   }
 }));
