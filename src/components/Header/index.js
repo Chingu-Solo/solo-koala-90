@@ -20,14 +20,12 @@ const Header = props => {
   return (
     <AppBar
       variant="outlined"
-      color={isDarkMode ? "secondary" : "white"}
-      className={classes.header}
+      className={isDarkMode ? classes.headerDark : classes.header}
     >
       <Toolbar>
         <Typography
           variant="h6"
-          color={isDarkMode ? "white" : "textSecondary"}
-          className={classes.logo}
+          className={isDarkMode ? classes.logoDark : classes.logo}
         >
           Google Fonts
         </Typography>
@@ -36,7 +34,9 @@ const Header = props => {
           <Hidden mdUp>
             <IconButton aria-label="open drawer">
               <MenuIcon
-                style={{ color: `${isDarkMode ? "white" : "inherit"}` }}
+                className={
+                  isDarkMode ? classes.hamburgerDark : classes.hamburger
+                }
               />
             </IconButton>
           </Hidden>

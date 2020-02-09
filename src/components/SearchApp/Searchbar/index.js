@@ -127,9 +127,8 @@ const SearchBar = props => {
       <Grid item md={2} lg={2}>
         <div className={classes.icons}>
           <Hidden xsDown>
-            <IconButton aria-label="change theme">
+            <IconButton aria-label="change theme" onClick={toggleTheme}>
               <FormatColorFillIcon
-                onClick={toggleTheme}
                 color={isDarkMode ? "secondary" : "inherit"}
               />
             </IconButton>

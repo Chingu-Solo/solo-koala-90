@@ -14,7 +14,6 @@ const FontCard = props => {
   const { isDarkMode } = useContext(ThemesContext);
   const { fontFamily, styles, inputValue, fontSizeValue } = props;
   const [quotesValue] = useState(randomQuotes(quotesArr));
-
   return (
     <Grid item xs={12} md={4} lg={3} className={classes.fontCardContainer}>
       <section

@@ -40,9 +40,10 @@ const SearchApp = props => {
       if (!entry.isIntersecting) return;
 
       let lazyTextArea = entry.target;
-      const fontLink = lazyTextArea.style.fontFamily.split(" ").join("+");
+      const fontLink = lazyTextArea.style.fontFamily.replace(/ /g, "+");
       const link = document.createElement("link");
       link.href = `https://fonts.googleapis.com/css2?family=${fontLink}&display=swap`;
+      link.href = link.href.replace(/%22/g, "");
       link.rel = "stylesheet";
 
       document.head.appendChild(link);

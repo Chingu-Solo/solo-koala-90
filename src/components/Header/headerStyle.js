@@ -2,15 +2,30 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
   header: {
-    padding: "0 1rem 0 2rem"
-    // backgroundColor: "white"
+    padding: "0 1rem 0 2rem",
+    backgroundColor: "white"
+  },
+  headerDark: {
+    padding: "0 1rem 0 2rem",
+    backgroundColor: theme.palette.secondary.main
   },
   logo: {
-    flexGrow: 1
+    flexGrow: 1,
+    color: theme.palette.text.secondary
+  },
+  logoDark: {
+    flexGrow: 1,
+    color: "white"
   },
   navList: {
     display: "flex",
     flexDirection: "row"
+  },
+  hamburgerDark: {
+    color: "white"
+  },
+  hamburger: {
+    color: "inherit"
   },
   navListItem: {
     color: theme.palette.text.secondary,
