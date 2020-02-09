@@ -8,8 +8,8 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
 import ViewListOutlinedIcon from "@material-ui/icons/ViewListOutlined";
-import ViewComfyOutlinedIcon from "@material-ui/icons/ViewComfyOutlined";
 import RefreshIcon from "@material-ui/icons/Refresh";
+import ViewComfyOutlinedIcon from "@material-ui/icons/ViewComfyOutlined";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import Slider from "@material-ui/core/Slider";
 import Hidden from "@material-ui/core/Hidden";
@@ -21,14 +21,16 @@ const SearchBar = props => {
   console.log("searchBar rendered");
 
   const { isDarkMode, toggleTheme } = useContext(ThemesContext);
-  const { isGridLayout, toggleIsGridLayout } = useContext(LayoutContext);
+  const { toggleIsGridLayout } = useContext(LayoutContext);
 
   const {
     handleQuotesChange,
     filteredFonts,
     setFilteredFonts,
     fontSizeValue,
-    setFontSizeValue
+    setFontSizeValue,
+    handleReset,
+    inputValue
   } = props;
   const classes = useStyles(props);
   const fontSelect = [8, 12, 14, 20, 24, 32, 40, 64, 96, 120, 184, 280];
@@ -45,9 +47,10 @@ const SearchBar = props => {
     >
       <Grid item md={2} lg={2}>
         <InputBase
+          value={filteredFonts}
+          onChange={handleFilter}
           type="text"
           name={filteredFonts}
-          onChange={handleFilter}
           placeholder="Search fonts"
           classes={{
             input: `${isDarkMode ? classes.inputInputDark : classes.inputInput}`
@@ -71,6 +74,8 @@ const SearchBar = props => {
           className={isDarkMode ? classes.spacedLineDark : classes.spacedLine}
         >
           <InputBase
+            value={inputValue || ""}
+            name={inputValue}
             onChange={handleQuotesChange}
             color="secondary"
             placeholder="Type something"
@@ -139,7 +144,7 @@ const SearchBar = props => {
               />
             </IconButton>
           </Hidden>
-          <IconButton aria-label="reset">
+          <IconButton aria-label="reset" onClick={handleReset}>
             <RefreshIcon color={isDarkMode ? "secondary" : "inherit"} />
           </IconButton>
         </div>

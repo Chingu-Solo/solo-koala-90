@@ -9,14 +9,13 @@ import { ThemesContext, LayoutContext } from "../../context/ThemesContext";
 
 const SearchApp = props => {
   const classes = useStyles(props);
-
-  const { isDarkMode } = useContext(ThemesContext);
-  const { isGridLayout } = useContext(LayoutContext);
+  const { isDarkMode, resetTheme } = useContext(ThemesContext);
+  const { isGridLayout, resetLayout } = useContext(LayoutContext);
   const [fonts, setFonts] = useState([]);
   const [observer, setNodes, enteries] = useIntersect({});
-  const [inputValue, handleQuotesChange] = useInputState();
+  const [inputValue, handleQuotesChange, resetInput] = useInputState();
   const [filteredFonts, setFilteredFonts] = useState("");
-  const [fontSizeValue, setFontSizeValue] = useState("");
+  const [fontSizeValue, setFontSizeValue] = useState();
 
   //&sort=popularity
   useEffect(() => {
@@ -72,6 +71,14 @@ const SearchApp = props => {
     </div>
   );
 
+  const handleReset = () => {
+    resetInput("");
+    setFilteredFonts("");
+    setFontSizeValue(40);
+    resetTheme();
+    resetLayout();
+  };
+
   console.log(fonts);
   return (
     <div>
@@ -81,8 +88,10 @@ const SearchApp = props => {
         setFilteredFonts={setFilteredFonts}
         fontSizeValue={fontSizeValue}
         setFontSizeValue={setFontSizeValue}
+        handleReset={handleReset}
+        inputValue={inputValue}
       />
-      {fonts ? (
+      {fonts && (
         <div className={classes.displayFontResult}>
           {resultCounts(fonts)}
           <FontList
@@ -91,8 +100,6 @@ const SearchApp = props => {
             fontSizeValue={fontSizeValue}
           />
         </div>
-      ) : (
-        ""
       )}
     </div>
   );
