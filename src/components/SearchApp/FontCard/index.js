@@ -5,17 +5,25 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import TextAreaAutoSize from "@material-ui/core/TextareaAutosize";
 import { randomQuotes } from "../../../utils/helper";
 import { quotesArr } from "../../../utils/quotes";
-import { ThemesContext } from "../../../context/ThemesContext";
+import { ThemesContext, LayoutContext } from "../../../context/ThemesContext";
 import useStyles from "./fontCardStyle";
 
 const FontCard = props => {
   console.log("FontCard rendered!");
   const classes = useStyles(props);
   const { isDarkMode } = useContext(ThemesContext);
+  const { isGridLayout } = useContext(LayoutContext);
   const { fontFamily, styles, inputValue, fontSizeValue } = props;
   const [quotesValue] = useState(randomQuotes(quotesArr));
+
   return (
-    <Grid item xs={12} md={4} lg={3} className={classes.fontCardContainer}>
+    <Grid
+      item
+      xs={12}
+      md={isGridLayout ? 4 : 12}
+      lg={isGridLayout ? 3 : 12}
+      className={classes.fontCardContainer}
+    >
       <section
         className={isDarkMode ? classes.fontSectionDark : classes.fontSection}
       >

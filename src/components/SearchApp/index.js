@@ -5,17 +5,18 @@ import useInputState from "../../hook/useInputState";
 import SearchBar from "./Searchbar";
 import FontList from "./FontList";
 import useStyles from "./searchAppStyle";
-import { ThemesContext } from "../../context/ThemesContext";
+import { ThemesContext, LayoutContext } from "../../context/ThemesContext";
 
 const SearchApp = props => {
   const classes = useStyles(props);
 
   const { isDarkMode } = useContext(ThemesContext);
+  const { isGridLayout } = useContext(LayoutContext);
   const [fonts, setFonts] = useState([]);
   const [observer, setNodes, enteries] = useIntersect({});
   const [inputValue, handleQuotesChange] = useInputState();
   const [filteredFonts, setFilteredFonts] = useState("");
-  const [fontSizeValue, setFontSizeValue] = useState(40);
+  const [fontSizeValue, setFontSizeValue] = useState("");
 
   //&sort=popularity
   useEffect(() => {
@@ -26,6 +27,10 @@ const SearchApp = props => {
       setFonts(res.data.items.slice(0, 10));
     })();
   }, []);
+
+  useEffect(() => {
+    isGridLayout ? setFontSizeValue(40) : setFontSizeValue(64);
+  }, [isGridLayout]);
 
   useEffect(() => {
     if (!fonts) return;

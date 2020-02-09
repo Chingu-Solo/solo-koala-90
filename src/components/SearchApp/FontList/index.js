@@ -3,7 +3,7 @@ import FontCard from "../FontCard";
 
 import useStyles from "./fontListStyle";
 
-const SearchList = ({ fonts, inputValue, fontSizeValue }) => {
+const SearchList = ({ fonts, inputValue, fontSizeValue, isListLayout }) => {
   console.log("FontList rendered");
 
   const classes = useStyles();
@@ -17,6 +17,7 @@ const SearchList = ({ fonts, inputValue, fontSizeValue }) => {
           styles={font.variants}
           inputValue={inputValue}
           fontSizeValue={fontSizeValue}
+          isListLayout={isListLayout}
         />
       ))}
     </div>

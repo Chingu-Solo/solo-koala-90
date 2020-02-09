@@ -13,7 +13,7 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import Slider from "@material-ui/core/Slider";
 import Hidden from "@material-ui/core/Hidden";
-import { ThemesContext } from "../../../context/ThemesContext";
+import { ThemesContext, LayoutContext } from "../../../context/ThemesContext";
 
 import useStyles from "./searchBarStyle";
 
@@ -21,6 +21,7 @@ const SearchBar = props => {
   console.log("searchBar rendered");
 
   const { isDarkMode, toggleTheme } = useContext(ThemesContext);
+  const { isGridLayout, toggleIsGridLayout } = useContext(LayoutContext);
 
   const {
     handleQuotesChange,
@@ -132,7 +133,7 @@ const SearchBar = props => {
                 color={isDarkMode ? "secondary" : "inherit"}
               />
             </IconButton>
-            <IconButton aria-label="change layout">
+            <IconButton aria-label="change layout" onClick={toggleIsGridLayout}>
               <ViewListOutlinedIcon
                 color={isDarkMode ? "secondary" : "inherit"}
               />
