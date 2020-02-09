@@ -1,9 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import FontCard from "../FontCard";
 
 import useStyles from "./fontListStyle";
 
-const SearchList = ({ fonts, inputValue }) => {
+const SearchList = ({ fonts, inputValue, fontSizeValue, isListLayout }) => {
+  console.log("FontList rendered");
+
   const classes = useStyles();
   if (!fonts) return "";
   return (
@@ -14,10 +16,12 @@ const SearchList = ({ fonts, inputValue }) => {
           fontFamily={font.family}
           styles={font.variants}
           inputValue={inputValue}
+          fontSizeValue={fontSizeValue}
+          isListLayout={isListLayout}
         />
       ))}
     </div>
   );
 };
 
-export default SearchList;
+export default memo(SearchList);
