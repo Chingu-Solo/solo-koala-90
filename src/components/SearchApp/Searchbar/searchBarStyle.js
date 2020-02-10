@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     padding: "0 0.2em",
     paddingLeft: ".8em",
     border: "1px solid rgba(0, 0, 0, 0.12)",
-    marginTop: theme.spacing(11)
+    marginTop: theme.spacing(5)
   },
   searchBarDark: {
     maxWidth: "90%",

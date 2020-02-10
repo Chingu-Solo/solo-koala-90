@@ -94,6 +94,7 @@ const SearchApp = props => {
       {fonts && (
         <div className={classes.displayFontResult}>
           {resultCounts(fonts)}
+
           <FontList
             fonts={newFilters}
             inputValue={inputValue}

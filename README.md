@@ -31,11 +31,12 @@ npm install
 - [x] Toggle dark/light mode
 - [x] Search a font name and display all matched fonts with their own styling
 - [x] Change the display of fonts (grid/list layout)
-- [x] Add fonts into a list also can be deleted from the list (localStorage)
-- [ ] Sample texts are immediately changed depending on font-size and a set of custom text message
+- [ ] Add fonts into a list also can be deleted from the list (localStorage)
+- [x] Sample texts are immediately changed depending on font-size and a set of custom text message
 - [x] The displaying fonts are sorted by popularity
 - [x] A reset button
-- [ ] A back to top button
+- [x] A back to top button
+- [x] A toggleable sidebar
 - [x] Fully responsive website design
 - [x] Lazily loading font family
 

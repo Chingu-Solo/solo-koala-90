@@ -7,10 +7,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import FormatColorFillIcon from "@material-ui/icons/FormatColorFill";
-import ViewListOutlinedIcon from "@material-ui/icons/ViewListOutlined";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import ViewComfyOutlinedIcon from "@material-ui/icons/ViewComfyOutlined";
-import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
+import ViewStreamIcon from "@material-ui/icons/ViewStream";
 import Slider from "@material-ui/core/Slider";
 import Hidden from "@material-ui/core/Hidden";
 import { ThemesContext, LayoutContext } from "../../../context/ThemesContext";
@@ -21,7 +20,7 @@ const SearchBar = props => {
   console.log("searchBar rendered");
 
   const { isDarkMode, toggleTheme } = useContext(ThemesContext);
-  const { toggleIsGridLayout } = useContext(LayoutContext);
+  const { isGridLayout, toggleIsGridLayout } = useContext(LayoutContext);
 
   const {
     handleQuotesChange,
@@ -139,9 +138,13 @@ const SearchBar = props => {
               />
             </IconButton>
             <IconButton aria-label="change layout" onClick={toggleIsGridLayout}>
-              <ViewListOutlinedIcon
-                color={isDarkMode ? "secondary" : "inherit"}
-              />
+              {isGridLayout ? (
+                <ViewComfyOutlinedIcon
+                  color={isDarkMode ? "secondary" : "inherit"}
+                />
+              ) : (
+                <ViewStreamIcon color={isDarkMode ? "secondary" : "inherit"} />
+              )}
             </IconButton>
           </Hidden>
           <IconButton aria-label="reset" onClick={handleReset}>

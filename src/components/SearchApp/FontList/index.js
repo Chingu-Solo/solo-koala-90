@@ -1,12 +1,12 @@
 import React, { memo } from "react";
 import FontCard from "../FontCard";
-
 import useStyles from "./fontListStyle";
 
 const SearchList = ({ fonts, inputValue, fontSizeValue, isListLayout }) => {
   console.log("FontList rendered");
 
   const classes = useStyles();
+
   if (!fonts) return "";
   return (
     <div className={classes.fontListContainer}>

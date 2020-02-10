@@ -9,6 +9,10 @@ const useStyles = makeStyles(theme => ({
     padding: "0 1rem 0 2rem",
     backgroundColor: theme.palette.secondary.main
   },
+  list: {
+    width: "200px",
+    paddingTop: "1.5em"
+  },
   logo: {
     flexGrow: 1,
     color: theme.palette.text.secondary
