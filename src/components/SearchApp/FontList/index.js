@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import FontCard from "../FontCard";
 import useStyles from "./fontListStyle";
 
@@ -24,4 +24,4 @@ const SearchList = ({ fonts, inputValue, fontSizeValue, isListLayout }) => {
   );
 };
 
-export default memo(SearchList);
+export default SearchList;

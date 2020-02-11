@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, memo } from "react";
 import axios from "axios";
 import useIntersect from "../../hook/useIntersect";
 import useInputState from "../../hook/useInputState";
@@ -7,8 +7,8 @@ import FontList from "./FontList";
 import useStyles from "./searchAppStyle";
 import { ThemesContext, LayoutContext } from "../../context/ThemesContext";
 
-const SearchApp = props => {
-  const classes = useStyles(props);
+const SearchApp = () => {
+  const classes = useStyles();
   const { isDarkMode, resetTheme } = useContext(ThemesContext);
   const { isGridLayout, resetLayout } = useContext(LayoutContext);
   const [fonts, setFonts] = useState([]);
@@ -67,7 +67,6 @@ const SearchApp = props => {
         Viewing <span className={classes.countColor}>{newFilters.length}</span>{" "}
         of {fonts.length} font families
       </p>
-      <p></p>
     </div>
   );
 
@@ -94,7 +93,6 @@ const SearchApp = props => {
       {fonts && (
         <div className={classes.displayFontResult}>
           {resultCounts(fonts)}
-
           <FontList
             fonts={newFilters}
             inputValue={inputValue}
@@ -106,4 +104,4 @@ const SearchApp = props => {
   );
 };
 
-export default SearchApp;
+export default memo(SearchApp);

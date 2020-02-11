@@ -10,7 +10,7 @@ import "./app.css";
 import Toolbar from "@material-ui/core/Toolbar";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import ScrollTop from "./ScrollTop/ScrollTop";
+import ScrollTop from "./ScrollTop/";
 
 const theme = createMuiTheme({
   palette: {
@@ -22,10 +22,10 @@ const theme = createMuiTheme({
 
 export default function App(props) {
   return (
-    <ThemesProvider>
-      <ThemeProvider theme={theme}>
-        <PageContext>
-          <div className="App">
+    <div className="App">
+      <ThemesProvider>
+        <ThemeProvider theme={theme}>
+          <PageContext>
             <Toolbar id="back-to-top-anchor" />
             <Header />
             <SearchApp />
@@ -38,9 +38,9 @@ export default function App(props) {
                 <KeyboardArrowUpIcon />
               </Fab>
             </ScrollTop>
-          </div>
-        </PageContext>
-      </ThemeProvider>
-    </ThemesProvider>
+          </PageContext>
+        </ThemeProvider>
+      </ThemesProvider>
+    </div>
   );
 }
