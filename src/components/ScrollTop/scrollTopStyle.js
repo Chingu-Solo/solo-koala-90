@@ -1,11 +1,10 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
-  fontListContainer: {
-    display: "flex",
-    width: "90vw",
-    flexWrap: "wrap",
-    marginTop: theme.spacing(3)
+  root: {
+    position: "fixed",
+    bottom: theme.spacing(3),
+    right: theme.spacing(5)
   }
 }));
 
