@@ -1,35 +1,50 @@
 import React, { useState, useContext, memo } from "react";
-import uuid from "uuid/v4";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import TextAreaAutoSize from "@material-ui/core/TextareaAutosize";
-import Drawer from "@material-ui/core/Drawer";
+import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import FontDownloadOutlinedIcon from "@material-ui/icons/FontDownloadOutlined";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-
+import Drawer from "@material-ui/core/Drawer";
 import { randomQuotes } from "../../../utils/helper";
 import { quotesArr } from "../../../utils/quotes";
 import { ThemesContext, LayoutContext } from "../../../context/ThemesContext";
 import useStyles from "./fontCardStyle";
 
-const FontCard = ({ fontFamily, styles, inputValue, fontSizeValue }) => {
+const FontCard = ({
+  fontFamily,
+  styles,
+  inputValue,
+  fontSizeValue,
+  favFonts,
+  handleAddFavFont,
+  handleDeleteFavFont
+}) => {
   const classes = useStyles();
   const { isDarkMode } = useContext(ThemesContext);
   const { isGridLayout } = useContext(LayoutContext);
   const [quotesValue] = useState(randomQuotes(quotesArr));
+  const [isAdded, setIsAdded] = useState(false);
   const [drawer, setDrawer] = useState({ bottom: false });
-  const [favFonts, setFavFonts] = useState([
-    { name: "Roboto", id: 1 },
-    { name: "Abel", id: 2 }
-  ]);
 
   console.log("FontCard rendered!");
 
+  const handleAddFont = e => {
+    handleAddFavFont();
+    setIsAdded(true);
+  };
+
+  const handleRemove = name => {
+    handleDeleteFavFont(name);
+    setIsAdded(false);
+  };
+
+  console.log(favFonts);
   const toggleDrawer = (side, open) => e => {
     if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) return;
 
@@ -46,7 +61,7 @@ const FontCard = ({ fontFamily, styles, inputValue, fontSizeValue }) => {
                 <FontDownloadOutlinedIcon color="secondary" fontSize="small" />
               </ListItemIcon>
               <ListItemText primary={favFont.name} />
-              <IconButton>
+              <IconButton onClick={() => handleRemove(favFont.name)}>
                 <HighlightOffIcon color="secondary" />
               </IconButton>
             </ListItem>
@@ -75,13 +90,23 @@ const FontCard = ({ fontFamily, styles, inputValue, fontSizeValue }) => {
             >
               {fontFamily}
             </h1>
-            <IconButton
-              size="small"
-              aria-label="Add fonts"
-              onClick={toggleDrawer("bottom", true)}
-            >
-              <AddCircleIcon color="secondary" fontSize="small" />
-            </IconButton>
+            {isAdded ? (
+              <span>
+                <IconButton size="small" aria-label="disabled add fonts">
+                  <RemoveCircleOutlineIcon color="disabled" fontSize="small" />
+                </IconButton>
+              </span>
+            ) : (
+              <span onClick={toggleDrawer("bottom", true)}>
+                <IconButton
+                  size="small"
+                  aria-label="Add fonts"
+                  onClick={handleAddFont}
+                >
+                  <AddCircleIcon color="secondary" fontSize="small" />
+                </IconButton>
+              </span>
+            )}
           </div>
           <h2
             className={
