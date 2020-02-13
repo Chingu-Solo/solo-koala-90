@@ -41,12 +41,14 @@ const Header = props => {
       <List>
         {["CATALOG", "FEATURED", "ARTICLES", "ABOUT"].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon className={index === 0 && classes.navListItemActived}>
+            <ListItemIcon
+              className={`${index === 0 && classes.navListItemActived}`}
+            >
               {renderIcons(index)}
             </ListItemIcon>
             <ListItemText
               primary={text}
-              className={index === 0 && classes.navListItemActived}
+              className={`${index === 0 && classes.navListItemActived}`}
             />
           </ListItem>
         ))}

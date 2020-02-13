@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import uuid from "uuid/v4";
-
 import FontCard from "../FontCard";
 import useStyles from "./fontListStyle";
 

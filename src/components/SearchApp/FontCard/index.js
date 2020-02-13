@@ -2,7 +2,7 @@ import React, { useState, useContext, memo } from "react";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import TextAreaAutoSize from "@material-ui/core/TextareaAutosize";
+import Textarea from "react-expanding-textarea";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -44,7 +44,8 @@ const FontCard = ({
     setIsAdded(false);
   };
 
-  console.log(favFonts);
+  // console.log(favFonts);
+
   const toggleDrawer = (side, open) => e => {
     if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) return;
 
@@ -70,7 +71,7 @@ const FontCard = ({
     </div>
   );
 
-  console.log(favFonts);
+  // console.log(favFonts);
 
   return (
     <Grid
@@ -117,7 +118,7 @@ const FontCard = ({
           </h2>
         </div>
         <div className="fontPreview">
-          <TextAreaAutoSize
+          <Textarea
             defaultValue={inputValue || quotesValue}
             className={isDarkMode ? classes.textareaDark : classes.textarea}
             style={{
