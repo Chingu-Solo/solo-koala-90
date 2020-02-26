@@ -17,6 +17,28 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     color: theme.palette.text.secondary
   },
+  logoLink: {
+    "&:visited": {
+      color: "grey"
+    },
+    "&:link": {
+      color: "grey"
+    },
+    "&:hover": {
+      textDecoration: "none"
+    }
+  },
+  logoLinkDark: {
+    "&:visited": {
+      color: "white"
+    },
+    "&:link": {
+      color: "white"
+    },
+    "&:hover": {
+      textDecoration: "none"
+    }
+  },
   logoDark: {
     flexGrow: 1,
     color: "white"

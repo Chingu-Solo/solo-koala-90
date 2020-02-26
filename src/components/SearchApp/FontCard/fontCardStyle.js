@@ -68,6 +68,22 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: "1",
     color: theme.palette.secondary.main,
     backgroundColor: "transparent"
+  },
+  drawerStyle: {
+    background: "transparent",
+    color: "white",
+    left: "auto",
+    backgroundColor: "black",
+    right: theme.spacing(5),
+    width: "40vw",
+    [theme.breakpoints.up("lg")]: {
+      width: "30vw",
+      right: theme.spacing(5)
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "100vw",
+      right: 0
+    }
   }
 }));
 

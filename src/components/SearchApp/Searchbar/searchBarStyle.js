@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: ".8em",
     opacity: ".7",
     border: `1px solid ${theme.palette.secondary.main}`,
-    marginTop: theme.spacing(11)
+    marginTop: theme.spacing(5)
   },
   searchIcon: {
     display: "inline-block",
