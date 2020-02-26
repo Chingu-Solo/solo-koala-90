@@ -10,34 +10,16 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import HomeIcon from "@material-ui/icons/Home";
-import StarIcon from "@material-ui/icons/Star";
-import DescriptionIcon from "@material-ui/icons/Description";
-import InfoIcon from "@material-ui/icons/Info";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import { ThemesContext } from "../../context/ThemesContext";
+import { renderIcons } from "../../utils/helper";
 import useStyles from "./headerStyle";
 
 const Header = props => {
   const classes = useStyles(props);
   const { isDarkMode } = useContext(ThemesContext);
   const [sideBar, setSidebar] = useState({ right: false });
-
-  const renderIcons = index => {
-    switch (index) {
-      case 0:
-        return <HomeIcon className={classes.navListItemActived} />;
-      case 1:
-        return <StarIcon />;
-      case 2:
-        return <DescriptionIcon />;
-      case 3:
-        return <InfoIcon />;
-      default:
-        return "";
-    }
-  };
 
   const toggleDrawer = (side, open) => event => {
     if (
@@ -46,7 +28,6 @@ const Header = props => {
     ) {
       return;
     }
-
     setSidebar({ ...sideBar, [side]: open });
   };
 
@@ -58,10 +39,17 @@ const Header = props => {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {["Catalog", "Featured", "Articles", "About"].map((text, index) => (
+        {["CATALOG", "FEATURED", "ARTICLES", "ABOUT"].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{renderIcons(index)}</ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemIcon
+              className={`${index === 0 && classes.navListItemActived}`}
+            >
+              {renderIcons(index)}
+            </ListItemIcon>
+            <ListItemText
+              primary={text}
+              className={`${index === 0 && classes.navListItemActived}`}
+            />
           </ListItem>
         ))}
       </List>
@@ -69,96 +57,96 @@ const Header = props => {
   );
 
   return (
-    <>
-      <AppBar
-        variant="outlined"
-        className={isDarkMode ? classes.headerDark : classes.header}
-      >
-        <Toolbar>
-          <Typography
-            variant="h6"
-            className={isDarkMode ? classes.logoDark : classes.logo}
+    <AppBar
+      variant="outlined"
+      className={`${classes.header} ${isDarkMode && classes.headerDark}`}
+    >
+      <Toolbar>
+        <Typography
+          variant="h6"
+          className={`${classes.logo} ${isDarkMode && classes.logoDark}`}
+        >
+          <Link
+            href="#"
+            className={`${classes.logoLink} ${isDarkMode &&
+              classes.logoLinkDark}`}
           >
             Google Fonts
-          </Typography>
+          </Link>
+        </Typography>
 
-          <List className={classes.navList}>
-            <Hidden mdUp>
-              <IconButton
-                aria-label="open drawer"
-                onClick={toggleDrawer("right", true)}
-              >
-                <MenuIcon
+        <List className={classes.navList}>
+          <Hidden mdUp>
+            <IconButton
+              aria-label="open drawer"
+              onClick={toggleDrawer("right", true)}
+            >
+              <MenuIcon
+                className={`${classes.hamburger} ${isDarkMode &&
+                  classes.hamburgerDark}`}
+              />
+            </IconButton>
+            <Drawer
+              anchor="right"
+              open={sideBar.right}
+              onClose={toggleDrawer("right", false)}
+            >
+              {sideList("right")}
+            </Drawer>
+          </Hidden>
+
+          <Hidden only={["xs", "sm"]}>
+            <ListItem>
+              <Typography variant="body1">
+                <Link
+                  href="#"
                   className={
-                    isDarkMode ? classes.hamburgerDark : classes.hamburger
+                    isDarkMode
+                      ? `${classes.navListItem} ${classes.navListItemActivedDark}`
+                      : `${classes.navListItemActived} ${classes.navListItem}`
                   }
-                />
-              </IconButton>
-              <Drawer
-                anchor="right"
-                open={sideBar.right}
-                onClose={toggleDrawer("right", false)}
-              >
-                {sideList("right")}
-              </Drawer>
-            </Hidden>
-
-            <Hidden only={["xs", "sm"]}>
-              <ListItem>
-                <Typography variant="body1">
-                  <Link
-                    href="#"
-                    className={
-                      isDarkMode
-                        ? `${classes.navListItem} ${classes.navListItemActivedDark}`
-                        : `${classes.navListItemActived} ${classes.navListItem}`
-                    }
-                  >
-                    CATALOG
-                  </Link>
-                </Typography>
-              </ListItem>
-              <ListItem>
-                <Typography variant="body1">
-                  <Link
-                    href="#"
-                    className={
-                      isDarkMode ? classes.navListItemDark : classes.navListItem
-                    }
-                  >
-                    FEATURED
-                  </Link>
-                </Typography>
-              </ListItem>
-              <ListItem>
-                <Typography variant="body1">
-                  <Link
-                    href="#"
-                    className={
-                      isDarkMode ? classes.navListItemDark : classes.navListItem
-                    }
-                  >
-                    ARTICLES
-                  </Link>
-                </Typography>
-              </ListItem>
-              <ListItem>
-                <Typography variant="body1">
-                  <Link
-                    href="#"
-                    className={
-                      isDarkMode ? classes.navListItemDark : classes.navListItem
-                    }
-                  >
-                    ABOUT
-                  </Link>
-                </Typography>
-              </ListItem>
-            </Hidden>
-          </List>
-        </Toolbar>
-      </AppBar>
-    </>
+                >
+                  CATALOG
+                </Link>
+              </Typography>
+            </ListItem>
+            <ListItem>
+              <Typography variant="body1">
+                <Link
+                  href="#"
+                  className={`${classes.navListItem} ${isDarkMode &&
+                    classes.navListItemDark}`}
+                >
+                  FEATURED
+                </Link>
+              </Typography>
+            </ListItem>
+            <ListItem>
+              <Typography variant="body1">
+                <Link
+                  href="#"
+                  className={`${classes.navListItem} ${isDarkMode &&
+                    classes.navListItemDark}`}
+                >
+                  ARTICLES
+                </Link>
+              </Typography>
+            </ListItem>
+            <ListItem>
+              <Typography variant="body1">
+                <Link
+                  href="#"
+                  className={`${classes.navListItem} ${isDarkMode &&
+                    classes.navListItemDark}`}
+                >
+                  ABOUT
+                </Link>
+              </Typography>
+            </ListItem>
+          </Hidden>
+        </List>
+      </Toolbar>
+    </AppBar>
   );
 };
 

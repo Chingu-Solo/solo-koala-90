@@ -1,13 +1,18 @@
-import React, { memo } from "react";
+import React from "react";
 import FontCard from "../FontCard";
 import useStyles from "./fontListStyle";
 
-const SearchList = ({ fonts, inputValue, fontSizeValue, isListLayout }) => {
-  console.log("FontList rendered");
-
+const SearchList = ({
+  fonts,
+  inputValue,
+  fontSizeValue,
+  isListLayout,
+  favFonts,
+  addFavFonts,
+  removeFavFonts
+}) => {
   const classes = useStyles();
 
-  if (!fonts) return "";
   return (
     <div className={classes.fontListContainer}>
       {fonts.map(font => (
@@ -18,10 +23,13 @@ const SearchList = ({ fonts, inputValue, fontSizeValue, isListLayout }) => {
           inputValue={inputValue}
           fontSizeValue={fontSizeValue}
           isListLayout={isListLayout}
+          favFonts={favFonts}
+          addFavFonts={() => addFavFonts(font.family)}
+          removeFavFonts={removeFavFonts}
         />
       ))}
     </div>
   );
 };
 
-export default memo(SearchList);
+export default SearchList;

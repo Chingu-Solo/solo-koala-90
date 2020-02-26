@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -16,26 +16,22 @@ import { ThemesContext, LayoutContext } from "../../../context/ThemesContext";
 
 import useStyles from "./searchBarStyle";
 
-const SearchBar = props => {
-  console.log("searchBar rendered");
+const SearchBar = ({
+  handleQuotesChange,
+  filteredFonts,
+  setFilteredFonts,
+  fontSizeValue,
+  setFontSizeValue,
+  handleReset,
+  inputValue
+}) => {
+  const classes = useStyles();
 
   const { isDarkMode, toggleTheme } = useContext(ThemesContext);
   const { isGridLayout, toggleIsGridLayout } = useContext(LayoutContext);
-
-  const {
-    handleQuotesChange,
-    filteredFonts,
-    setFilteredFonts,
-    fontSizeValue,
-    setFontSizeValue,
-    handleReset,
-    inputValue
-  } = props;
-  const classes = useStyles(props);
   const fontSelect = [8, 12, 14, 20, 24, 32, 40, 64, 96, 120, 184, 280];
 
   const handleFilter = e => setFilteredFonts(e.target.value);
-
   return (
     <Grid
       container
@@ -156,4 +152,4 @@ const SearchBar = props => {
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);
