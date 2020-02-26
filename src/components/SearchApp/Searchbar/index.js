@@ -31,8 +31,6 @@ const SearchBar = ({
   const { isGridLayout, toggleIsGridLayout } = useContext(LayoutContext);
   const fontSelect = [8, 12, 14, 20, 24, 32, 40, 64, 96, 120, 184, 280];
 
-  console.log("searchBar rendered");
-
   const handleFilter = e => setFilteredFonts(e.target.value);
   return (
     <Grid

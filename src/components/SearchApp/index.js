@@ -6,6 +6,7 @@ import SearchBar from "./Searchbar";
 import FontList from "./FontList";
 import useStyles from "./searchAppStyle";
 import { ThemesContext, LayoutContext } from "../../context/ThemesContext";
+import useFavFontState from "../../hook/useFavFontState";
 
 const SearchApp = () => {
   const classes = useStyles();
@@ -16,12 +17,16 @@ const SearchApp = () => {
   const [inputValue, handleQuotesChange, resetInput] = useInputState();
   const [filteredFonts, setFilteredFonts] = useState("");
   const [fontSizeValue, setFontSizeValue] = useState();
+  const initalFavFonts = [];
+  const { favFonts, addFavFonts, removeFavFonts } = useFavFontState(
+    initalFavFonts
+  );
 
   //&sort=popularity
   useEffect(() => {
     (async () => {
       const res = await axios.get(
-        `https://www.googleapis.com/webfonts/v1/webfonts?key=${process.env.REACT_APP_GOOGLE_FONTS_API}`
+        `https://www.googleapis.com/webfonts/v1/webfonts?key=${process.env.REACT_APP_GOOGLE_FONTS_API}&sort=popularity`
       );
       setFonts(res.data.items.slice(0, 10));
     })();
@@ -35,14 +40,13 @@ const SearchApp = () => {
     if (!fonts) return;
     let textarea = Array.from(document.querySelectorAll("textarea"));
     setNodes(textarea);
-  }, [fonts, setNodes]);
+  }, [fonts, filteredFonts, setNodes]);
 
   useEffect(() => {
     if (!enteries) return;
 
     enteries.forEach(entry => {
       if (!entry.isIntersecting) return;
-
       let lazyTextArea = entry.target;
       const fontLink = lazyTextArea.style.fontFamily.replace(/ /g, "+");
       const link = document.createElement("link");
@@ -78,7 +82,6 @@ const SearchApp = () => {
     resetLayout();
   };
 
-  console.log(fonts);
   return (
     <div>
       <SearchBar
@@ -97,6 +100,9 @@ const SearchApp = () => {
             fonts={newFilters}
             inputValue={inputValue}
             fontSizeValue={fontSizeValue}
+            favFonts={favFonts}
+            addFavFonts={addFavFonts}
+            removeFavFonts={removeFavFonts}
           />
         </div>
       )}

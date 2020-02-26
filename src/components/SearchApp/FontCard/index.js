@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Textarea from "react-expanding-textarea";
-import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -22,8 +21,8 @@ const FontCard = ({
   inputValue,
   fontSizeValue,
   favFonts,
-  handleAddFavFont,
-  handleDeleteFavFont
+  addFavFonts,
+  removeFavFonts
 }) => {
   const classes = useStyles();
   const { isDarkMode } = useContext(ThemesContext);
@@ -32,19 +31,15 @@ const FontCard = ({
   const [isAdded, setIsAdded] = useState(false);
   const [drawer, setDrawer] = useState({ bottom: false });
 
-  console.log("FontCard rendered!");
-
   const handleAddFont = e => {
-    handleAddFavFont();
+    addFavFonts();
     setIsAdded(true);
   };
 
-  const handleRemove = name => {
-    handleDeleteFavFont(name);
+  const handleRemove = id => {
+    removeFavFonts(id);
     setIsAdded(false);
   };
-
-  // console.log(favFonts);
 
   const toggleDrawer = (side, open) => e => {
     if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) return;
@@ -57,15 +52,20 @@ const FontCard = ({
       <List>
         {favFonts &&
           favFonts.map(favFont => (
-            <ListItem key={favFont.id} dense>
-              <ListItemIcon>
-                <FontDownloadOutlinedIcon color="secondary" fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary={favFont.name} />
-              <IconButton onClick={() => handleRemove(favFont.name)}>
-                <HighlightOffIcon color="secondary" />
-              </IconButton>
-            </ListItem>
+            <div key={favFont.id}>
+              <ListItem dense>
+                <ListItemIcon>
+                  <FontDownloadOutlinedIcon
+                    color="secondary"
+                    fontSize="small"
+                  />
+                </ListItemIcon>
+                <ListItemText primary={favFont.name} />
+                <IconButton onClick={() => handleRemove(favFont.id)}>
+                  <HighlightOffIcon color="secondary" />
+                </IconButton>
+              </ListItem>
+            </div>
           ))}
       </List>
     </div>
@@ -91,23 +91,18 @@ const FontCard = ({
             >
               {fontFamily}
             </h1>
-            {isAdded ? (
-              <span>
-                <IconButton size="small" aria-label="disabled add fonts">
-                  <RemoveCircleOutlineIcon color="disabled" fontSize="small" />
-                </IconButton>
-              </span>
-            ) : (
-              <span onClick={toggleDrawer("bottom", true)}>
-                <IconButton
-                  size="small"
-                  aria-label="Add fonts"
-                  onClick={handleAddFont}
-                >
-                  <AddCircleIcon color="secondary" fontSize="small" />
-                </IconButton>
-              </span>
-            )}
+            <span onClick={toggleDrawer("bottom", true)}>
+              <IconButton
+                size="small"
+                aria-label="Add fonts"
+                onClick={handleAddFont}
+              >
+                <AddCircleIcon
+                  color={isAdded ? "disabled" : "secondary"}
+                  fontSize="small"
+                />
+              </IconButton>
+            </span>
           </div>
           <h2
             className={

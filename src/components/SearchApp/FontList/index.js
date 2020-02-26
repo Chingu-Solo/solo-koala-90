@@ -1,27 +1,18 @@
-import React, { useState, useContext } from "react";
-import uuid from "uuid/v4";
+import React from "react";
 import FontCard from "../FontCard";
 import useStyles from "./fontListStyle";
 
-const SearchList = ({ fonts, inputValue, fontSizeValue, isListLayout }) => {
-  console.log("FontList rendered");
-
+const SearchList = ({
+  fonts,
+  inputValue,
+  fontSizeValue,
+  isListLayout,
+  favFonts,
+  addFavFonts,
+  removeFavFonts
+}) => {
   const classes = useStyles();
-  const [favFonts, setFavFonts] = useState([
-    // { name: "Roboto", id: 1 },
-    // { name: "Abel", id: 2 }
-  ]);
 
-  const handleAddFavFont = newFont => {
-    setFavFonts([...favFonts, { name: newFont, id: uuid(), added: true }]);
-  };
-
-  const handleDeleteFavFont = name => {
-    const removedFavFonts = favFonts.filter(fav => fav.name !== name);
-    setFavFonts(removedFavFonts);
-  };
-
-  if (!fonts) return "";
   return (
     <div className={classes.fontListContainer}>
       {fonts.map(font => (
@@ -33,8 +24,8 @@ const SearchList = ({ fonts, inputValue, fontSizeValue, isListLayout }) => {
           fontSizeValue={fontSizeValue}
           isListLayout={isListLayout}
           favFonts={favFonts}
-          handleAddFavFont={() => handleAddFavFont(font.family)}
-          handleDeleteFavFont={handleDeleteFavFont}
+          addFavFonts={() => addFavFonts(font.family)}
+          removeFavFonts={removeFavFonts}
         />
       ))}
     </div>
