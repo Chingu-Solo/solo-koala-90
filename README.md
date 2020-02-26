@@ -31,7 +31,7 @@ npm install
 - [x] Toggle dark/light mode
 - [x] Search a font name and display all matched fonts with their own styling
 - [x] Change the display of fonts (grid/list layout)
-- [ ] Add fonts into a list also can be deleted from the list (localStorage)
+- [x] Add fonts into a list also can be deleted from the list (localStorage)
 - [x] Sample texts are immediately changed depending on font-size and a set of custom text message
 - [x] The displaying fonts are sorted by popularity
 - [x] A reset button
