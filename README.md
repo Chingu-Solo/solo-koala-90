@@ -4,6 +4,19 @@ The app is a fully developed front-end app created for the Chingu Solo Project. 
 
 #### [Demo](https://elegant-kalam-dc4d3a.netlify.com/) - working in progress
 
+#
+
+- 🐞 bugs need to be fixed:
+
+  - [ ] the addTo / removeFrom favourite fonts buttons need to sync with their state.
+  - [ ] a better UX on the move to top button
+
+- optimisation:
+  - [ ] more concise code
+  - [ ] find a way to handle the big api data
+
+#
+
 ## Prerequisites
 
 Replace the `GOOGLE_FONTS_API_KEY` with `YOUR_API_KEY`
