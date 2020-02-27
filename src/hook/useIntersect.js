@@ -5,11 +5,10 @@ const useIntersect = options => {
   const [enteries, setEnteries] = useState([]);
 
   const observer = useRef(null);
-  const { root = null, rootMargin = "0px", threshold = 0 } = options || {};
+  const { root = null, rootMargin = "0px", threshold = "1" } = options || {};
 
   useEffect(() => {
     if (observer.current) observer.current.disconnect();
-
     observer.current = new IntersectionObserver(
       ioEnteries => {
         setEnteries(ioEnteries);

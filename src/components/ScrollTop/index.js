@@ -4,7 +4,7 @@ import Hidden from "@material-ui/core/Hidden";
 import Zoom from "@material-ui/core/Zoom";
 import useStyles from "./scrollTopStyle";
 
-const ScrollTop = ({ children }) => {
+const ScrollToTop = ({ children }) => {
   const classes = useStyles();
 
   // const { children } = props;
@@ -20,7 +20,6 @@ const ScrollTop = ({ children }) => {
     }
   };
 
-  console.log(window);
   return (
     <Hidden smDown>
       <Zoom in={trigger}>
@@ -37,4 +36,4 @@ const ScrollTop = ({ children }) => {
   );
 };
 
-export default ScrollTop;
+export default ScrollToTop;
