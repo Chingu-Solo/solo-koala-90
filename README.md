@@ -2,7 +2,7 @@
 
 The app is a fully developed front-end app created for the Chingu Solo Project. By configuring the Google Fonts API, allowing users to search, test, and play around with their favourite fonts.
 
-#### [Demo](https://elegant-kalam-dc4d3a.netlify.com/) - working in progress
+#### [Demo](https://fav-fonts.netlify.app/) - working in progress
 
 ## Prerequisites
 
