@@ -36,8 +36,8 @@ const FontCard = ({
     setIsAdded(true);
   };
 
-  const handleRemove = id => {
-    removeFavFonts(id);
+  const handleRemove = name => {
+    removeFavFonts(name);
     setIsAdded(false);
   };
 
@@ -52,7 +52,7 @@ const FontCard = ({
       <List>
         {favFonts &&
           favFonts.map(favFont => (
-            <div key={favFont.id}>
+            <div key={favFont.name}>
               <ListItem dense>
                 <ListItemIcon>
                   <FontDownloadOutlinedIcon
@@ -61,7 +61,7 @@ const FontCard = ({
                   />
                 </ListItemIcon>
                 <ListItemText primary={favFont.name} />
-                <IconButton onClick={() => handleRemove(favFont.id)}>
+                <IconButton onClick={() => handleRemove(favFont.name)}>
                   <HighlightOffIcon color="secondary" />
                 </IconButton>
               </ListItem>
