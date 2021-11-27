@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Header from "./Header";
 import SearchApp from "./SearchApp";
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -20,7 +20,7 @@ const theme = createMuiTheme({
   }
 });
 
-export default function App(props) {
+const App = props => {
   return (
     <div className="App">
       <ThemesProvider>
@@ -43,4 +43,6 @@ export default function App(props) {
       </ThemesProvider>
     </div>
   );
-}
+};
+
+export default memo(App);
