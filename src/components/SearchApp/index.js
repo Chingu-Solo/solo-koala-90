@@ -18,17 +18,16 @@ const SearchApp = () => {
   const [filteredFonts, setFilteredFonts] = useState("");
   const [fontSizeValue, setFontSizeValue] = useState();
   const initalFavFonts = [];
-  const { favFonts, addFavFonts, removeFavFonts } = useFavFontState(
-    initalFavFonts
-  );
+  const { favFonts, addFavFonts, removeFavFonts } =
+    useFavFontState(initalFavFonts);
 
   //&sort=popularity
   useEffect(() => {
     (async () => {
       const res = await axios.get(
-        `https://www.googleapis.com/webfonts/v1/webfonts?key=${process.env.REACT_APP_GOOGLE_FONTS_API}&sort=popularity`
+        `https://www.googleapis.com/webfonts/v1/webfonts?key=${process.env.REACT_APP_GOOGLE_FONTS_API}&sort=popularity`,
       );
-      setFonts(res.data.items.slice(0, 10));
+      setFonts(res.data.items.slice(0, 50));
     })();
   }, []);
 
@@ -45,7 +44,7 @@ const SearchApp = () => {
   useEffect(() => {
     if (!enteries) return;
 
-    enteries.forEach(entry => {
+    enteries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       let lazyTextArea = entry.target;
       const fontLink = lazyTextArea.style.fontFamily.replace(/ /g, "+");
@@ -59,11 +58,11 @@ const SearchApp = () => {
     });
   }, [enteries, observer]);
 
-  const newFilters = fonts.filter(font =>
-    font.family.toLowerCase().includes(filteredFonts.toLowerCase())
+  const newFilters = fonts.filter((font) =>
+    font.family.toLowerCase().includes(filteredFonts.toLowerCase()),
   );
 
-  const resultCounts = fonts => (
+  const resultCounts = (fonts) => (
     <div
       className={isDarkMode ? classes.resultCountsDark : classes.resultCounts}
     >

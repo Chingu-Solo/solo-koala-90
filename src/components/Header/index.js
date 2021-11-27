@@ -67,7 +67,7 @@ const Header = props => {
           className={`${classes.logo} ${isDarkMode && classes.logoDark}`}
         >
           <Link
-            href="#"
+            href="/"
             className={`${classes.logoLink} ${isDarkMode &&
               classes.logoLinkDark}`}
           >
